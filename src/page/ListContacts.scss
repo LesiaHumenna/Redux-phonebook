@@ -1,0 +1,45 @@
+.list-title {
+    color: #fff;
+    font-size: 1.375rem;
+    width: 50%;
+    margin: 0px auto;
+    margin-bottom: 35px;
+    .activ {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+}
+tbody,
+thead {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    max-width: 100%;
+    margin: 0px auto;
+}
+th{
+    color: #1756a2;
+    
+}
+tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 35px;
+    border: 1px solid;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #cbdef3;
+    color: #121213;
+}
+
+ .btn-del {
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.btn-edit{
+    cursor: pointer;
+    border-radius: 6px;
+}
