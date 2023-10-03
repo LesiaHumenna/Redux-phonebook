@@ -36,7 +36,6 @@ const userReducers = (state = initialState, action) => {
         ...state,
         usersList: updatedUsers,
       };
-
     default:
       return state;
   }

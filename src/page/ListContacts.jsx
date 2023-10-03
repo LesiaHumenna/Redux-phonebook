@@ -37,8 +37,12 @@ function ListContacts() {
         });
       }
       setListUsers(usersPerson);
-      console.log(usersPerson);
-      dispatch(setUserList(usersPerson));
+      
+      if (usersList.length === 0) {
+        dispatch( setUserList(usersPerson));
+        console.log("list users null");
+        return;
+      }
       const maxId = Math.max(...users.map((user) => user.id), [0]);
       setLastUserId(maxId);
     }
