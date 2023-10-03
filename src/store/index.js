@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from "redux";
-import ListContacts from "../page/ListContacts";
 
 const initialState = {
   usersList: [],
@@ -9,35 +8,35 @@ const initialState = {
 const userReducers = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_LIST":
-    return {
-    ...state,
-    usersList: action.payload,
-  };
-    case "ADD_USER":
-      const newUser = {
-        id: state.setLastUserId + 1,
-        name: action.payload.name,
-        username: action.payload.username,
-        phone: action.payload.phone,
-      };
       return {
         ...state,
-        usersList: [...state.usersList, newUser],
-        setLastUserId: state.setLastUserId + 1,
-        setListUsers: state.usersList.some((item) => item.id === newUser.id),
+        usersList: action.payload,
+      };
+    case "ADD_USER":
+      return {
+        ...state,
+        usersList: [...state.usersList, action.payload],
       };
 
     case "REMOVE_USER":
+      console.log(state);
+      let newusersList = state.usersList.filter((u) => u.id !== action.id);
+      console.log(newusersList);
       return {
         ...state,
-    usersList: state.usersList.filter((u) => u.id !== action.payload.id)
+        usersList: state.usersList.filter((u) => u.id !== action.id),
       };
-     
+
     case "EDIT_USER":
+      const updatedUsers = [...state.usersList];
+      const index = updatedUsers.findIndex((u) => u.id === action.payload.id);
+      const updatedUser = { ...updatedUsers[index], ...action.payload };
+      updatedUsers[index] = updatedUser;
       return {
         ...state,
-        usersList: state.usersList.map((user) => user.id === action.payload.id),
+        usersList: updatedUsers,
       };
+
     default:
       return state;
   }

@@ -1,68 +1,84 @@
 /* eslint-disable react/prop-types */
 import "./FormAdd.scss";
-//import { useNavigate } from "react-router-dom";
-//import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Form } from "react-router-dom";
-import {useState, useEffect} from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-function Edit(props) {
-  //const navigate = useNavigate("/list");
+function Edit() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const usersList = useSelector((state) => state.usersList);
+  const index = usersList.findIndex((u) => u.id === parseInt(id));
+  const user = usersList[index];
+  console.log(user);
+
   const [formValues, setFormValues] = useState({
     id: "",
     name: "",
     username: "",
     phone: "",
   });
+console.log(formValues.name)
 
-  //const { id } = useParams();
-
-  // useEffect(() => {
-    // if (user) {
-      // setFormValues(user);
-    // }
-  // }, [user]);
-
+  useEffect(() => {
+    if (user) {
+      setFormValues(user);
+    }
+  }, [user]);
   const handleChange = (e) => {
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
     });
+    console.log("After update:", formValues);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const index = props.userList.findIndex(u => u.id === parseInt(id));
-    const updatedUsers = [...props.userList];
-    updatedUsers[index] = {
-    ...updatedUsers[index],
-    ...formValues
-    };
-    props.setListUsers(updatedUsers);
-    console.log(handleSubmit)
-
-    //navigate("/list");
+    console.log("Form values before dispatch:", formValues);
+    dispatch({
+      type: "EDIT_USER",
+      payload: {
+        id:  formValues.id,
+        name: formValues.name,
+        username: formValues.username,
+        phone: formValues.phone,
+      },
+    });
+    navigate("/list");
   };
-
+  
   return (
     <>
-      <Form onSubmit={handleSubmit} className="form-edit">
-        <input name="name"
+      <form onSubmit={handleSubmit} className="form-edit">
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="enter name"
           value={formValues.name}
           onChange={handleChange}
         />
-        <input name="username"
+        <label htmlFor="username">Last Name</label>
+        <input
+          type="text"
+          name="username"
           value={formValues.username}
           onChange={handleChange}
         />
-        <input name="phone"
-        value={formValues.phone}
-        onChange={handleChange}
+        <label htmlFor="phone">Phone</label>
+        <input
+          type="tel"
+          name="phone"
+          value={formValues.phone}
+          onChange={handleChange}
         />
-        <button type="submit">Submit</button>
-      </Form>
+        <button type="submit">
+          Edit
+        </button>
+      </form>
     </>
   );
 }
