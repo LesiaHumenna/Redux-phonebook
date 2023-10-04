@@ -12,10 +12,10 @@ function Nav() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/list">ListContacts</NavLink>
+            <NavLink to="/list">You Contacts</NavLink>
           </li>
           <li>
-            <NavLink to="/formAdd">FormAddUser</NavLink>
+            <NavLink to="/formAdd">New User</NavLink>
           </li>
         </nav>
       </div>

@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 import { Form } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import  {userActions} from '../store/index';
+import './Edit.scss'
 function Edit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const usersList = useSelector((state) => state.usersList);
+  const usersList = useSelector((state) => state.usersList.usersList);
+
   const index = usersList.findIndex((u) => u.id === parseInt(id));
   const user = usersList[index];
   console.log(user);
@@ -38,22 +40,24 @@ console.log(formValues.name)
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form values before dispatch:", formValues);
-    dispatch({
-      type: "EDIT_USER",
-      payload: {
+    if (usersList.length === 0) {
+      console.log("EDit users null");
+      return;
+    }
+    dispatch(userActions.EDIT_USER({
         id:  formValues.id,
         name: formValues.name,
         username: formValues.username,
         phone: formValues.phone,
-      },
-    });
+      }
+    ))
     navigate("/list");
   };
   
   return (
     <>
       <form onSubmit={handleSubmit} className="form-edit">
-        <label htmlFor="name">Name</label>
+        <label className="lab-edit" htmlFor="name">Name</label>
         <input
           type="text"
           name="name"
@@ -61,14 +65,14 @@ console.log(formValues.name)
           value={formValues.name}
           onChange={handleChange}
         />
-        <label htmlFor="username">Last Name</label>
+        <label className="lab-edit" htmlFor="username">Last Name</label>
         <input
           type="text"
           name="username"
           value={formValues.username}
           onChange={handleChange}
         />
-        <label htmlFor="phone">Phone</label>
+        <label className="lab-edit" htmlFor="phone">Phone</label>
         <input
           type="tel"
           name="phone"

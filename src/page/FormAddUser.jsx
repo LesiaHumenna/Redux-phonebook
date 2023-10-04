@@ -3,6 +3,7 @@ import "./FormAdd.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import  {userActions} from '../store/index';
 
 const validate = (values) => {
   const errors = {};
@@ -25,7 +26,7 @@ const validate = (values) => {
 function FormAddUser() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const usersList = useSelector((state) => state.usersList);
+  const usersList = useSelector((state) => state.usersList.usersList);
 
   const formik = useFormik({
     initialValues: {
@@ -37,7 +38,7 @@ function FormAddUser() {
     validate,
     _onSubmit: (values) => {
       submitFormHandler(values);
-      formik.resetForm(navigate("/list"));
+      formik.handleReset(navigate("/list"));
       navigate("/list");
       console.log(JSON.stringify(values, null, 2));
     },
@@ -53,16 +54,14 @@ function FormAddUser() {
   const submitFormHandler = (e) => {
     e.preventDefault();
     
-    dispatch({
-      type: "ADD_USER",
-      payload: {
+    dispatch(userActions.ADD_USER({
         id: usersList.length + 1,
         name: formik.values.name,
         username: formik.values.username,
         phone: formik.values.phone,
-      },
-    });
-    console.log(submitFormHandler);
+    }));
+  
+    console.log(userActions.ADD_USER);
     navigate("/list");
   };
 

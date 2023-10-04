@@ -6,10 +6,10 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
 import { BsFillPencilFill } from "react-icons/bs";
-
+import { userActions } from "../store/index";
 function ListContacts() {
   const dispatch = useDispatch();
-  const usersList = useSelector((state) => state.usersList);
+  const usersList = useSelector((state) => state.usersList.usersList);
 
   const [selectedUserId, setSelectedUserId] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -37,34 +37,31 @@ function ListContacts() {
         });
       }
       setListUsers(usersPerson);
-      
+
       if (usersList.length === 0) {
-        dispatch( setUserList(usersPerson));
+        dispatch(userActions.SET_USER_LIST(usersPerson));
         console.log("list users null");
         return;
       }
       const maxId = Math.max(...users.map((user) => user.id), [0]);
       setLastUserId(maxId);
+      console.log(usersPerson);
     }
     fetchUsers().catch((error) => {
       console.log(error);
     });
   }, []);
 
-  const setUserList = (users) => ({
-    type: "SET_USER_LIST",
-    payload: users,
-  });
+  const SET_USER_LIST = (users) => {
+    dispatch(userActions.SET_USER_LIST(users));
+  };
 
   const removeUser = (id) => {
     if (usersList.length === 0) {
-      console.log("list users null");
+      console.log("remove users null");
       return;
     }
-    dispatch({
-      type: "REMOVE_USER",
-      id: selectedUserId,
-    });
+    dispatch(userActions.REMOVE_USER(selectedUserId));
     setShowModal(false);
   };
 

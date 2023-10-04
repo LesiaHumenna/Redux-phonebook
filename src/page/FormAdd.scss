@@ -5,20 +5,16 @@
     margin: 0px auto;
     label{
         margin-top: 10px;
-        color: white;
+        color: rgb(65, 88, 208);
         
     }
     input{
         cursor: pointer;
         border-radius: 5px;
-        
+
         :active{
             background-color: #b7dbfa;
         }
-    }
-    button{
-        background-color: #b6d8f5;
-       
     }
     .btn-form{
         display: flex;

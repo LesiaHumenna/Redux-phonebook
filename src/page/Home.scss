@@ -1,13 +1,36 @@
-.h1-title{
-    background-color: rgb(40, 118, 139);
-    color: #fff;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    font-size: 1.8rem;
-  }
+.h1-title {
+  background-color: rgb(26, 145, 178);
+  color: #fff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  font-size: 1.8rem;
+  box-shadow: rgba(228, 217, 217, 0.3) 0px 0px 10px 5px;
+}
 
-
-img{
+img {
   margin-top: 20px;
   width: 50%;
+  box-shadow: rgba(205, 173, 173, 0.3) 0px 0px 10px 5px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+.home-link {
+  width: 50%;
+  height: 30px;
+  margin: 0px auto;
+  box-shadow: rgba(205, 173, 173, 0.3) 0px 0px 10px 5px;
+  background-color: #fff;
+  border-radius: 8px;
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 4px 0px;
+  }
+
+  .svg-icon{
+    margin-top: 0.4375rem;
+  }
 }

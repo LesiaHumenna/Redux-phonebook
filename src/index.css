@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url(src/assets/tech-img.webp);
 }
 
 h1 {
@@ -46,6 +47,9 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  transform: translate(-3px, -7px );
+  box-shadow: rgba(8, 8, 8, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  /* box-shadow: rgba(205, 173, 173, 0.3) 0px 0px 10px 5px; */
 
 }
 button:hover {
