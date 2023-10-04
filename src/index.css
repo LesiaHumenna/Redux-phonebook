@@ -29,7 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url(src/assets/tech-img.webp);
+  background-image: url(./img/tech-img.webp);
 }
 
 h1 {
