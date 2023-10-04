@@ -1,6 +1,6 @@
 function ErrorPage() {
     return (
-            <h1>Error</h1>
+            <img src="src/assets/error.png" alt="error" />
     );
 }
 
