@@ -6,7 +6,7 @@ function Home() {
         <h1 className="h1-title">Book-Contacts</h1>
       </div>
       <div className="home-img">
-        <img src="./img/contact-us.jpg" alt="img-contact" />
+        <img src="./img/contact-us.png" alt="img-contact" />
       </div>
       <div className="home-link">
       <div className="link">
