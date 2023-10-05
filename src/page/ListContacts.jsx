@@ -130,7 +130,7 @@ function ListContacts() {
                     <AiFillDelete />
                   </button>
 
-                  <NavLink to={`/edit/${user.id}`} state={user} key={user.id}>
+                  <NavLink to={`/edit/${user.id}`} state={user} >
                     <button className="btn-edit" type="edit">
                       <BsFillPencilFill />
                     </button>
